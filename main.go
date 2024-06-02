@@ -1,5 +1,7 @@
 package main
 
-func main() {
+import "awesomeProject2/cmd"
 
+func main() {
+	cmd.Parse()
 }

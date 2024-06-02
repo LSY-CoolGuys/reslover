@@ -25,11 +25,13 @@ type PerfData struct {
 // DestinyMetrics  包含4种
 // APIResponsiveness、PodStartupLatency、SaturationPodStartupLatency、SchedulingThroughput.
 type DestinyMetrics struct {
-	APIResponsiveness           PerfData
-	PodStartupLatency           PerfData
-	SaturationPodStartupLatency PerfData
-	SchedulingThroughput        PerfData
-	SchedulingMetrics           PerfData
+	APIResponsiveness                    PerfData
+	PodStartupLatency                    PerfData
+	StatelessPodStartupLatency           PerfData
+	StatelessSaturationPodStartupLatency PerfData
+	SaturationPodStartupLatency          PerfData
+	SchedulingThroughput                 PerfData
+	SchedulingMetrics                    PerfData
 }
 
 // ServiceMetrics 包含创建和删除service的时间
@@ -47,10 +49,12 @@ type LoadMetrics struct {
 
 // DestinyOutputPath 所有指标的输出路径
 var DestinyOutputPath = map[string]string{
-	"APIResponsiveness":           "/tmp/test/destiny/ar.txt",
-	"PodStartupLatency":           "/tmp/test/destiny/psl.txt",
-	"SaturationPodStartupLatency": "/tmp/test/destiny/spsl.txt",
-	"SchedulingThroughput":        "/tmp/test/destiny/st.txt",
+	"APIResponsiveness":                    "/tmp/test/destiny/APIResponsivenessPrometheus_density.json", //"/tmp/result/destiny/APIResponsivenessPrometheus_simple_density.json",
+	"PodStartupLatency":                    "/tmp/test/destiny/PodStartupLatency_PodStartupLatency_density.json",
+	"StatelessPodStartupLatency":           "/tmp/result/destiny/StatelessPodStartupLatency_PodStartupLatency_density.json",
+	"StatelessSaturationPodStartupLatency": "/tmp/result/destiny/StatelessPodStartupLatency_SaturationPodStartupLatency_density.json",
+	"SaturationPodStartupLatency":          "/tmp/result/destiny/PodStartupLatency_SaturationPodStartupLatency_density.json",
+	"SchedulingThroughput":                 "/tmp/result/destiny/SchedulingThroughput_density.json",
 }
 
 // LoadOutputPath 所有指标的输出路径
