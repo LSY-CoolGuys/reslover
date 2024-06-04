@@ -24,22 +24,6 @@ func GetOutputJson(dm *DestinyMetrics) error {
 			if err != nil {
 				return err
 			}
-		case "StatelessPodStartupLatency":
-			if os.Getenv("STATELESS") == "true" {
-				continue
-			}
-			err := parseJson(&dm.SaturationPodStartupLatency, v)
-			if err != nil {
-				return err
-			}
-		case "StatelessStatelessPodStartupLatency":
-			if os.Getenv("STATELESS") == "true" {
-				continue
-			}
-			err := parseJson(&dm.PodStartupLatency, v)
-			if err != nil {
-
-			}
 		}
 	}
 	return nil

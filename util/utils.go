@@ -25,19 +25,19 @@ type PerfData struct {
 // DestinyMetrics  包含4种
 // APIResponsiveness、PodStartupLatency、SaturationPodStartupLatency、SchedulingThroughput.
 type DestinyMetrics struct {
-	APIResponsiveness                    PerfData
-	PodStartupLatency                    PerfData
-	StatelessPodStartupLatency           PerfData
-	StatelessSaturationPodStartupLatency PerfData
-	SaturationPodStartupLatency          PerfData
-	SchedulingThroughput                 PerfData
-	SchedulingMetrics                    PerfData
+	APIResponsiveness                    PerfData `json:"apiResponsiveness,omitempty"`
+	PodStartupLatency                    PerfData `json:"podStartupLatency"`
+	StatelessPodStartupLatency           PerfData `json:"statelessPodStartupLatency,omitempty"`
+	StatelessSaturationPodStartupLatency PerfData `json:"statelessSaturationPodStartupLatency,omitempty"`
+	SaturationPodStartupLatency          PerfData `json:"saturationPodStartupLatency"`
+	SchedulingThroughput                 PerfData `json:"schedulingThroughput"`
+	SchedulingMetrics                    PerfData `json:"schedulingMetrics,omitempty"`
 }
 
 // ServiceMetrics 包含创建和删除service的时间
 type ServiceMetrics struct {
-	CreateTimeStamp float64
-	DeleteTimeStamp float64
+	CreateTimeStamp float64 `json:"create_time_stamp"`
+	DeleteTimeStamp float64 `json:"delete_time_stamp"`
 }
 
 // LoadMetrics 解析load junit文件
