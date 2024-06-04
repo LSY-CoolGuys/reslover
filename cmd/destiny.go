@@ -12,7 +12,7 @@ func ParseDestiny() {
 		log.Fatal(err)
 	}
 
-	callBackInfo := map[string]util.PerfData{
+	callBackInfo := map[string]interface{}{
 		"PodStartupLatency":           destiny.PodStartupLatency,
 		"SaturationPodStartupLatency": destiny.SaturationPodStartupLatency,
 		"SchedulingThroughput":        destiny.SchedulingThroughput,
