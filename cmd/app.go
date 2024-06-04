@@ -9,7 +9,7 @@ import (
 
 func Parse() {
 	switch strings.ToLower(os.Getenv("TEST_MODE")) {
-	case "destiny":
+	case "density":
 		ParseDestiny()
 	case "load":
 		ParseLoad()
