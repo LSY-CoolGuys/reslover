@@ -50,7 +50,7 @@ type LoadMetrics struct {
 // DestinyOutputPath 所有指标的输出路径
 var DestinyOutputPath = map[string]string{
 	"APIResponsiveness":                    "/tmp/test/destiny/APIResponsivenessPrometheus_density.json", //"/tmp/result/destiny/APIResponsivenessPrometheus_simple_density.json",
-	"PodStartupLatency":                    "/tmp/test/destiny/PodStartupLatency_PodStartupLatency_density.json",
+	"PodStartupLatency":                    "/tmp/result/destiny/PodStartupLatency_PodStartupLatency_density.json",
 	"StatelessPodStartupLatency":           "/tmp/result/destiny/StatelessPodStartupLatency_PodStartupLatency_density.json",
 	"StatelessSaturationPodStartupLatency": "/tmp/result/destiny/StatelessPodStartupLatency_SaturationPodStartupLatency_density.json",
 	"SaturationPodStartupLatency":          "/tmp/result/destiny/PodStartupLatency_SaturationPodStartupLatency_density.json",
