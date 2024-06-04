@@ -15,7 +15,7 @@ func ParseDestiny() {
 	callBackInfo := map[string]util.PerfData{
 		"PodStartupLatency":           destiny.PodStartupLatency,
 		"SaturationPodStartupLatency": destiny.SaturationPodStartupLatency,
-		"SchedulingMetrics":           destiny.SchedulingMetrics,
+		"SchedulingThroughput":        destiny.SchedulingThroughput,
 	}
 
 	jsonData, err := json.Marshal(callBackInfo)

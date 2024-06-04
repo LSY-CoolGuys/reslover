@@ -25,13 +25,13 @@ type PerfData struct {
 // DestinyMetrics  包含4种
 // APIResponsiveness、PodStartupLatency、SaturationPodStartupLatency、SchedulingThroughput.
 type DestinyMetrics struct {
-	APIResponsiveness                    PerfData            `json:"apiResponsiveness,omitempty"`
-	PodStartupLatency                    PerfData            `json:"podStartupLatency"`
-	StatelessPodStartupLatency           PerfData            `json:"statelessPodStartupLatency,omitempty"`
-	StatelessSaturationPodStartupLatency PerfData            `json:"statelessSaturationPodStartupLatency,omitempty"`
-	SaturationPodStartupLatency          PerfData            `json:"saturationPodStartupLatency"`
-	SchedulingThroughput                 SchedulerThroughput `json:"schedulingThroughput"`
-	SchedulingMetrics                    PerfData            `json:"schedulingMetrics,omitempty"`
+	APIResponsiveness                    PerfData `json:"apiResponsiveness,omitempty"`
+	PodStartupLatency                    PerfData `json:"podStartupLatency"`
+	StatelessPodStartupLatency           PerfData `json:"statelessPodStartupLatency,omitempty"`
+	StatelessSaturationPodStartupLatency PerfData `json:"statelessSaturationPodStartupLatency,omitempty"`
+	SaturationPodStartupLatency          PerfData `json:"saturationPodStartupLatency"`
+	SchedulingThroughput                 PerfData `json:"schedulingThroughput"`
+	SchedulingMetrics                    PerfData `json:"schedulingMetrics,omitempty"`
 }
 
 type SchedulerThroughput struct {

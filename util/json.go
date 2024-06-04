@@ -20,7 +20,7 @@ func GetOutputJson(dm *DestinyMetrics) error {
 				return err
 			}
 		case "SchedulingThroughput":
-			err := parseSch(&dm.SchedulingThroughput, v)
+			err := parseJson(&dm.SchedulingThroughput, v)
 			if err != nil {
 				return err
 			}
