@@ -20,7 +20,7 @@ func GetOutputJson(dm *DestinyMetrics) error {
 				return err
 			}
 		case "SchedulingThroughput":
-			err := parseJson(&dm.SchedulingMetrics, v)
+			err := parseSch(&dm.SchedulingThroughput, v)
 			if err != nil {
 				return err
 			}
@@ -36,6 +36,20 @@ func parseJson(dm *PerfData, path string) error {
 		return err
 	}
 	err = json.Unmarshal(jsonData, dm)
+	if err != nil {
+		fmt.Println("Error unmarshalling JSON file:", err)
+		return err
+	}
+	return nil
+}
+
+func parseSch(sc *SchedulerThroughput, path string) error {
+	jsonData, err := os.ReadFile(path)
+	if err != nil {
+		fmt.Println("Error reading JSON file:", err)
+		return err
+	}
+	err = json.Unmarshal(jsonData, sc)
 	if err != nil {
 		fmt.Println("Error unmarshalling JSON file:", err)
 		return err

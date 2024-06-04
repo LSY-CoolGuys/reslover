@@ -25,13 +25,20 @@ type PerfData struct {
 // DestinyMetrics  包含4种
 // APIResponsiveness、PodStartupLatency、SaturationPodStartupLatency、SchedulingThroughput.
 type DestinyMetrics struct {
-	APIResponsiveness                    PerfData `json:"apiResponsiveness,omitempty"`
-	PodStartupLatency                    PerfData `json:"podStartupLatency"`
-	StatelessPodStartupLatency           PerfData `json:"statelessPodStartupLatency,omitempty"`
-	StatelessSaturationPodStartupLatency PerfData `json:"statelessSaturationPodStartupLatency,omitempty"`
-	SaturationPodStartupLatency          PerfData `json:"saturationPodStartupLatency"`
-	SchedulingThroughput                 PerfData `json:"schedulingThroughput"`
-	SchedulingMetrics                    PerfData `json:"schedulingMetrics,omitempty"`
+	APIResponsiveness                    PerfData            `json:"apiResponsiveness,omitempty"`
+	PodStartupLatency                    PerfData            `json:"podStartupLatency"`
+	StatelessPodStartupLatency           PerfData            `json:"statelessPodStartupLatency,omitempty"`
+	StatelessSaturationPodStartupLatency PerfData            `json:"statelessSaturationPodStartupLatency,omitempty"`
+	SaturationPodStartupLatency          PerfData            `json:"saturationPodStartupLatency"`
+	SchedulingThroughput                 SchedulerThroughput `json:"schedulingThroughput"`
+	SchedulingMetrics                    PerfData            `json:"schedulingMetrics,omitempty"`
+}
+
+type SchedulerThroughput struct {
+	Perc50 float64 `json:"perc50"`
+	Perc90 float64 `json:"perc90"`
+	Perc99 float64 `json:"perc99"`
+	Max    float64 `json:"max"`
 }
 
 // ServiceMetrics 包含创建和删除service的时间
@@ -60,6 +67,4 @@ var DestinyOutputPath = map[string]string{
 // LoadOutputPath 所有指标的输出路径
 var LoadOutputPath = []string{
 	"/tmp/test/load/junit.txt",
-	"/tmp/test/load/stp.txt",
-	"/tmp/test/load/sp.txt",
 }
