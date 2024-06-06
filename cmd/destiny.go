@@ -23,6 +23,7 @@ func ParseDestiny() {
 		log.Fatal(err)
 		return
 	}
+
 	if err = sendResult(jsonData); err != nil {
 		log.Fatal(err)
 		return
