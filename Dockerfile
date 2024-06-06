@@ -1,4 +1,4 @@
-FROM golang:alpine AS builD
+FROM golang:1.20 AS buil
 WORKDIR /app
 ADD . /app
 RUN cd /app \
@@ -10,8 +10,8 @@ RUN cd /app \
 FROM alpine:latest
 WORKDIR /app
 RUN apk update && apk add inotify-tools
-COPY --from=builD /app/resolve /app/resolve
-COPY --from=builD /app/monitor.sh /app/monitor.sh
+COPY --from=buil /app/resolve /app/resolve
+COPY --from=buil /app/monitor.sh /app/monitor.sh
 RUN chmod +x /app/resolve
 RUN chmod +x /app/monitor.sh
 RUN cd /app
