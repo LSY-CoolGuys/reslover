@@ -9,7 +9,7 @@ import (
 )
 
 func ParseLoad() {
-	createTime, deleteTime, err := util.GetLoadTestServicesCreateAndDeleteTime(os.Getenv("WATCH_DIR"))
+	createTime, deleteTime, err := util.GetLoadTestServicesCreateAndDeleteTime(os.Getenv("WATCH_DIR") + "junit.xml")
 	if err != nil {
 		log.Fatal(err)
 		return
