@@ -3,6 +3,7 @@ package cmd
 import (
 	"awesomeProject2/util"
 	"encoding/json"
+	"fmt"
 	"log"
 	"os"
 )
@@ -21,7 +22,7 @@ func ParseLoad() {
 			return
 		}
 		overCallBack := map[string]interface{}{
-			os.Getenv("LOW_SCALE"): fs,
+			os.Getenv("LOW_SCALE"): string(fs),
 			os.Getenv("HIGH_SCALE"): map[string]float64{
 				"createTime": createTime,
 				"deleteTime": deleteTime,
@@ -32,8 +33,14 @@ func ParseLoad() {
 			log.Fatal(err)
 			return
 		}
+		//
+		status := 1
+		if createTime == 0 && deleteTime == 0 {
+			status = 0
+		}
+		callBackUrl := url + fmt.Sprintf("?status=%d", status)
 		// 回调
-		if err = sendResult(jsonData); err != nil {
+		if err = callbackBackend(jsonData, callBackUrl); err != nil {
 			log.Fatal(err)
 			return
 		}

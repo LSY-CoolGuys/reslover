@@ -16,4 +16,4 @@ RUN chmod +x /app/resolve
 RUN chmod +x /app/monitor.sh
 RUN cd /app
 
-CMD ["/bin/sh","-c","./monitor.sh && ./resolve"]
+CMD ["/bin/sh","-c","./resolve"]
