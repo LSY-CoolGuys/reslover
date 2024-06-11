@@ -35,8 +35,8 @@ func main() {
 			}
 			logrus.Info("junit.xml文件生成，开始执行回调函数")
 			cmd.Parse()
-			break
 			logrus.Info("解析结束，容器关闭")
+			return
 		}
 	}
 }
