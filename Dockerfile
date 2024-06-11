@@ -12,8 +12,7 @@ WORKDIR /app
 RUN apk update && apk add inotify-tools
 COPY --from=buil /app/resolve /app/resolve
 COPY --from=buil /app/monitor.sh /app/monitor.sh
-RUN chmod +x /app/resolve
-RUN chmod +x /app/monitor.sh
-RUN cd /app
+RUN chmod +x /app/resolve && chmod +x /app/monitor.sh
+
 
 CMD ["/bin/sh","-c","./resolve"]
