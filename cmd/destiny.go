@@ -4,6 +4,7 @@ import (
 	"awesomeProject2/util"
 	"encoding/json"
 	"log"
+	"os"
 )
 
 func ParseDestiny() {
@@ -27,9 +28,13 @@ func ParseDestiny() {
 		log.Fatal(err)
 		return
 	}
+	status := "?status=1"
+	_, err = os.Stat("/tmp/result/status.yaml")
+	if err != nil && os.IsNotExist(err) {
+		status = "?status=0"
+	}
 	// status现在无法获取 默认为1吧
-	callBackUrl := url + "?status=1"
-	if err = callbackBackend(jsonData, callBackUrl); err != nil {
+	if err = callbackBackend(jsonData, url+status); err != nil {
 		log.Fatal(err)
 		return
 	}
