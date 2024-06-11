@@ -1,0 +1,71 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  # 手动执行ci
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Test Tag'
+        required: true
+        default: 'test'
+        type: choice
+        options:
+          - dev
+          - test
+          - uat
+env:
+  IMAGE_NAME: lsy-public/reslove
+# release.daocloud.io/lsy-public/reslove:v1.3
+jobs:
+  build:
+    if: contains(github.event.commits[0].message,'build-ci')
+    runs-on: ubuntu-latest
+    outputs:
+      image_tag: ${{ steps.set_info.outputs.image_tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Docker Login Harbor
+        uses: docker/login-action@v3
+        with:
+          # Server address of Docker registry. If not set then will default to Docker Hub
+          registry: release.daocloud.io
+          # Username used to log against the Docker registry
+          username: ${{ secrets.HARBOR_USER }}
+          # Password or personal access token used to log against the Docker registry
+          password: ${{ secrets.HARBOR_PASSWORD }}
+          # Log out from the Docker registry at the end of a job
+          logout: false
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: release.daocloud.io/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha,enable=true,priority=100,prefix={{branch}}-,suffix=,format=short
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          #       需要编译arm64 和 amd64的
+          #platforms: linux/amd64
+      - name: echo image tag
+        id: set_info
+        run: |
+          echo ${{ steps.meta.outputs.tags }}
+          echo "image_tag=${{ steps.meta.outputs.tags }}" >> $GITHUB_OUTPUT
+  deploy:
+    needs:
+      - build
+    if: contains(github.event.commits[0].message,'build-ci-cd')
+    runs-on: ubuntu-latest
+    steps:
+      - name: this is deploy job
+        env:
+          IMAGE_TAG: ${{ needs.build.outputs.image_tag }}
+        run: |
+          echo "start deploy to k8s,image tag is $IMAGE_TAG"

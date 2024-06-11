@@ -1,10 +1,12 @@
 package cmd
 
 import (
-	"github.com/valyala/fasthttp"
+	"encoding/json"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/valyala/fasthttp"
 )
 
 var testMode string
@@ -35,6 +37,11 @@ func callbackBackend(jsonData []byte, callBackUrl string) error {
 	//} else if state == "SUCCESS" {
 	//	state = "1"
 	//}
+	body := map[string][]byte{"values": jsonData}
+	bodyJson, err := json.Marshal(body)
+	if err != nil {
+		return err
+	}
 	log.Printf("callback url is : %s,body is : %s", callBackUrl, string(jsonData))
 	req := fasthttp.AcquireRequest()
 	defer fasthttp.ReleaseRequest(req)
@@ -42,7 +49,8 @@ func callbackBackend(jsonData []byte, callBackUrl string) error {
 	req.SetRequestURI(callBackUrl)
 	req.Header.Set("Authorization", "Internal testing")
 	req.Header.SetContentType("application/json")
-	req.SetBodyString(string(jsonData))
+	//req.SetBodyString(string(jsonData))
+	req.SetBody(bodyJson)
 	resp := fasthttp.AcquireResponse()
 	defer fasthttp.ReleaseResponse(resp)
 	client := fasthttp.Client{}

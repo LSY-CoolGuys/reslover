@@ -1,11 +1,13 @@
 package main
 
 import (
-	"awesomeProject2/cmd"
 	"fmt"
-	"github.com/sirupsen/logrus"
 	"os"
 	"time"
+
+	"awesomeProject2/cmd"
+
+	"github.com/sirupsen/logrus"
 )
 
 var junitFile string
@@ -39,4 +41,5 @@ func main() {
 			return
 		}
 	}
+
 }
