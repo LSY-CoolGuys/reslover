@@ -17,8 +17,12 @@ func ParseDestiny() {
 		"SaturationPodStartupLatency": destiny.SaturationPodStartupLatency,
 		"SchedulingThroughput":        destiny.SchedulingThroughput,
 	}
-
-	jsonData, err := json.Marshal(callBackInfo)
+	body := map[string]interface{}{"values": callBackInfo}
+	//bodyJson, err := json.Marshal(body)
+	//if err != nil {
+	//	return err
+	//}
+	jsonData, err := json.Marshal(body)
 	if err != nil {
 		log.Fatal(err)
 		return
