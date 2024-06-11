@@ -57,14 +57,9 @@ type LoadMetrics struct {
 // DestinyOutputPath 所有指标的输出路径
 var DestinyOutputPath = map[string]string{
 	"APIResponsiveness":                    "/tmp/test/destiny/APIResponsivenessPrometheus_density.json", //"/tmp/result/destiny/APIResponsivenessPrometheus_simple_density.json",
-	"PodStartupLatency":                    "/tmp/result/destiny/PodStartupLatency_PodStartupLatency_density.json",
-	"StatelessPodStartupLatency":           "/tmp/result/destiny/StatelessPodStartupLatency_PodStartupLatency_density.json",
-	"StatelessSaturationPodStartupLatency": "/tmp/result/destiny/StatelessPodStartupLatency_SaturationPodStartupLatency_density.json",
-	"SaturationPodStartupLatency":          "/tmp/result/destiny/PodStartupLatency_SaturationPodStartupLatency_density.json",
-	"SchedulingThroughput":                 "/tmp/result/destiny/SchedulingThroughput_density.json",
-}
-
-// LoadOutputPath 所有指标的输出路径
-var LoadOutputPath = []string{
-	"/tmp/test/load/junit.txt",
+	"PodStartupLatency":                    "/tmp/result/density/PodStartupLatency_PodStartupLatency_density.json",
+	"StatelessPodStartupLatency":           "/tmp/result/density/StatelessPodStartupLatency_PodStartupLatency_density.json",
+	"StatelessSaturationPodStartupLatency": "/tmp/result/density/StatelessPodStartupLatency_SaturationPodStartupLatency_density.json",
+	"SaturationPodStartupLatency":          "/tmp/result/density/PodStartupLatency_SaturationPodStartupLatency_density.json",
+	"SchedulingThroughput":                 "/tmp/result/density/SchedulingThroughput_density.json",
 }
