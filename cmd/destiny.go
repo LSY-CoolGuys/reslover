@@ -28,7 +28,7 @@ func ParseDestiny() {
 		return
 	}
 	// status现在无法获取 默认为1吧
-	callBackUrl := url + "?/status=1"
+	callBackUrl := url + "?status=1"
 	if err = callbackBackend(jsonData, callBackUrl); err != nil {
 		log.Fatal(err)
 		return
