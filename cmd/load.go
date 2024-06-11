@@ -59,18 +59,11 @@ func ParseLoad() {
 			logrus.Infof("序列化第一次测试结果失败，%v", err)
 			return
 		}
-		fs, err := os.Open("/var/load/firstData")
+		err = os.WriteFile("/var/load/firstData", jsonData, 0644)
 		if err != nil {
-			logrus.Infof("打开configmap挂载文件失败，err=%v", err)
+			logrus.Infof("吸入configmap挂载文件失败，err=%v", err)
 			return
 		}
-		defer fs.Close()
-
-		n, err := fs.Write(jsonData)
-		if err != nil {
-			logrus.Infof("写入文件失败，err=%v", err)
-			return
-		}
-		logrus.Infof("成功写入%d字节", n)
+		logrus.Infof("成功写入，data=%v", jsonData)
 	}
 }
