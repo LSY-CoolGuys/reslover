@@ -34,11 +34,13 @@ func ParseLoad() {
 		return
 	}
 	//
-	scale := os.Getenv("LOW_SCALE")
+	scale := os.Getenv("LOW_HIGH_SCALE")
+	callBackUrl := url + fmt.Sprintf("?scale=%v", scale)
 	if os.Getenv("IS_CALL_BACK") == "true" {
 		scale = os.Getenv("HIGH_SCALE")
+		callBackUrl = url + fmt.Sprintf("?status=%d&scale=%v", status, scale)
 	}
-	callBackUrl := url + fmt.Sprintf("?status=%d&scale=%v", status, scale)
+
 	// 回调
 	if err = callbackBackend(jsonData, callBackUrl); err != nil {
 		logrus.Infof("回调失败，%v", err)
