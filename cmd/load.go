@@ -34,11 +34,11 @@ func ParseLoad() {
 		return
 	}
 	//
-	scale := os.Getenv("LOW_HIGH_SCALE")
-	callBackUrl := url + fmt.Sprintf("?scale=%v", scale)
+	scale := os.Getenv("LOW_SCALE")
+	callBackUrl := url + fmt.Sprintf("?scale=%s", scale)
 	if os.Getenv("IS_CALL_BACK") == "true" {
 		scale = os.Getenv("HIGH_SCALE")
-		callBackUrl = url + fmt.Sprintf("?status=%d&scale=%v", status, scale)
+		callBackUrl = url + fmt.Sprintf("?status=%d&scale=%s", status, scale)
 	}
 
 	// 回调
