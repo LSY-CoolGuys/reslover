@@ -34,7 +34,7 @@ func ParseLoad() {
 		return
 	}
 	//
-	scale := os.Getenv("LOW_HIGH_SCALE")
+	scale := os.Getenv("LOW_SCALE")
 	if os.Getenv("IS_CALL_BACK") == "true" {
 		scale = os.Getenv("HIGH_SCALE")
 	}
