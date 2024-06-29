@@ -51,3 +51,50 @@ func getStepTimes(ts *Testsuite, createService, deleteService string) (float64, 
 	}
 	return createTime, deleteTime, nil
 }
+
+// GetCRITestBenchmark  解析 xml 文件
+func GetCRITestBenchmark(path string) (map[string]float64, error) {
+	xmlData, err := os.ReadFile(path)
+	if err != nil {
+		fmt.Println("Error reading XML file:", err)
+		return nil, err
+	}
+
+	var ts Testsuite
+	err = xml.Unmarshal(xmlData, &ts)
+	if err != nil {
+		fmt.Println("Error unmarshaling XML data:", err)
+		return nil, err
+	}
+
+	// 提取step 02和step 07的time
+	return getCRITestBenchmarkTimes(&ts) // Functions from import file etag.go can be referenced:
+
+}
+
+func getCRITestBenchmarkTimes(ts *Testsuite) (data map[string]float64, err error) {
+	for _, tc := range ts.Testcases {
+		if strings.Contains(tc.Name, "basic operations on Container ") {
+			data["BasicOperationsOnContainer"] = tc.Time
+		}
+		if strings.Contains(tc.Name, "listing Container") {
+			data["ListingContainer"] = tc.Time
+		}
+		if strings.Contains(tc.Name, "listing Image") {
+			data["ListingImage"] = tc.Time
+		}
+		if strings.Contains(tc.Name, "listing PodSandbox") {
+			data["ListingPodSandbox"] = tc.Time
+		}
+		if strings.Contains(tc.Name, "start a container from scratch") {
+			data["StartContainerFromScratch"] = tc.Time
+		}
+		if strings.Contains(tc.Name, "basic operations on Image") {
+			data["BasicOperationsOnImage"] = tc.Time
+		}
+		if strings.Contains(tc.Name, "lifecycle of PodSandbox") {
+			data["LifecycleOfPodSandbox"] = tc.Time
+		}
+	}
+	return data, nil
+}

@@ -24,6 +24,8 @@ func Parse() {
 		ParseDestiny()
 	case "load":
 		ParseLoad()
+	case "cri":
+		ParseCri()
 	}
 }
 
