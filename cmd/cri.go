@@ -21,7 +21,7 @@ func ParseCri() {
 			break
 		}
 	}
-	callBackInfo := map[string]interface{}{"cri": data}
+	callBackInfo := map[string]interface{}{"values": data}
 	if os.Getenv("CALLBACK_URL") == "" {
 		logrus.Errorf("CALLBACK_URL is empty")
 		return
