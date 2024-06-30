@@ -53,7 +53,7 @@ func getStepTimes(ts *Testsuite, createService, deleteService string) (float64, 
 }
 
 // GetCRITestBenchmark  解析 xml 文件
-func GetCRITestBenchmark(path string) (map[string]float64, error) {
+func GetCRITestBenchmark(path string) (map[string]map[string]float64, error) {
 	xmlData, err := os.ReadFile(path)
 	if err != nil {
 		fmt.Println("Error reading XML file:", err)
@@ -72,28 +72,28 @@ func GetCRITestBenchmark(path string) (map[string]float64, error) {
 
 }
 
-func getCRITestBenchmarkTimes(ts *Testsuite) (data map[string]float64, err error) {
+func getCRITestBenchmarkTimes(ts *Testsuite) (data map[string]map[string]float64, err error) {
 	for _, tc := range ts.Testcases {
 		if strings.Contains(tc.Name, "basic operations on Container ") {
-			data["BasicOperationsOnContainer"] = tc.Time
+			data["Container"]["BasicOperationsOnContainer"] = tc.Time
 		}
 		if strings.Contains(tc.Name, "listing Container") {
-			data["ListingContainer"] = tc.Time
+			data["Container"]["ListingContainer"] = tc.Time
 		}
 		if strings.Contains(tc.Name, "listing Image") {
-			data["ListingImage"] = tc.Time
+			data["Image"]["ListingImage"] = tc.Time
 		}
 		if strings.Contains(tc.Name, "listing PodSandbox") {
-			data["ListingPodSandbox"] = tc.Time
+			data["PodSandbox"]["ListingPodSandbox"] = tc.Time
 		}
 		if strings.Contains(tc.Name, "start a container from scratch") {
-			data["StartContainerFromScratch"] = tc.Time
+			data["Container"]["StartContainerFromScratch"] = tc.Time
 		}
 		if strings.Contains(tc.Name, "basic operations on Image") {
-			data["BasicOperationsOnImage"] = tc.Time
+			data["Image"]["BasicOperationsOnImage"] = tc.Time
 		}
 		if strings.Contains(tc.Name, "lifecycle of PodSandbox") {
-			data["LifecycleOfPodSandbox"] = tc.Time
+			data["PodSandbox"]["LifecycleOfPodSandbox"] = tc.Time
 		}
 	}
 	return data, nil
