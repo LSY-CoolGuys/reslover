@@ -16,10 +16,13 @@ func ParseCri() {
 	}
 	status := 1
 	for _, v := range data {
-		if v == float64(0) {
-			status = 0
-			break
+		for _, subV := range v {
+			if subV == float64(0) {
+				status = 0
+				break
+			}
 		}
+
 	}
 	callBackInfo := map[string]interface{}{"values": data}
 	if os.Getenv("CALLBACK_URL") == "" {
