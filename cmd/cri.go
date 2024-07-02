@@ -15,14 +15,16 @@ func ParseCri() {
 		logrus.Errorf("Get cri benchmark failed: %v", err)
 	}
 	status := 1
+	i := 0
 	for _, v := range data {
 		for _, subV := range v {
-			if subV == float64(0) {
-				status = 0
-				break
+			if subV != float64(0) {
+				i++
 			}
 		}
-
+	}
+	if i < 7 {
+		status = 0
 	}
 	callBackInfo := map[string]interface{}{"values": data}
 	if os.Getenv("CALLBACK_URL") == "" {
