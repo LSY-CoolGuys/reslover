@@ -14,7 +14,7 @@ func ParseCri() {
 	if err != nil {
 		logrus.Errorf("Get cri benchmark failed: %v", err)
 	}
-	status := 1
+	status := "1"
 	i := 0
 	for _, v := range data {
 		for _, subV := range v {
@@ -24,7 +24,7 @@ func ParseCri() {
 		}
 	}
 	if i < 7 {
-		status = 0
+		status = "0"
 	}
 	callBackInfo := map[string]interface{}{"values": data}
 	if os.Getenv("CALLBACK_URL") == "" {
@@ -32,7 +32,7 @@ func ParseCri() {
 		return
 	}
 	criUrl := os.Getenv("CALLBACK_URL")
-	callBackUrl := criUrl + fmt.Sprintf("?status=%d", status)
+	callBackUrl := criUrl + fmt.Sprintf("?status=%s", status)
 	jsonData, err := json.Marshal(callBackInfo)
 	if err != nil {
 		logrus.Errorf("Marshal cri benchmark failed: %v", err)

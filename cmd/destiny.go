@@ -3,6 +3,7 @@ package cmd
 import (
 	"awesomeProject2/util"
 	"encoding/json"
+	"github.com/sirupsen/logrus"
 	"log"
 	"os"
 )
@@ -25,7 +26,7 @@ func ParseDestiny() {
 	//}
 	jsonData, err := json.Marshal(body)
 	if err != nil {
-		log.Fatal(err)
+		logrus.Errorf("解析错误%s", err)
 		return
 	}
 	status := "?status=1"
