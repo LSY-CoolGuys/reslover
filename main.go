@@ -41,7 +41,7 @@ func main() {
 			logrus.Info("解析结束，容器关闭")
 			return
 		case <-ticker.C:
-			if _, err := os.Stat("/tmp/results/status.txt"); err != nil {
+			if _, err := os.Stat("/tmp/result/status.txt"); err != nil {
 				if !os.IsNotExist(err) {
 					logrus.Tracef("检测到status文件生成，但发生错误:%s", err)
 				}
