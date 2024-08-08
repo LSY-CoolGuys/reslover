@@ -77,6 +77,7 @@ func getCRITestBenchmarkTimes(ts *Testsuite) (data map[string]map[string]float64
 	data["Container"] = make(map[string]float64)
 	data["Image"] = make(map[string]float64)
 	data["PodSandbox"] = make(map[string]float64)
+	// 补0
 	data["Container"]["BasicOperationsOnContainer"] = 0
 	data["Container"]["ListingContainer"] = 0
 	data["Container"]["StartContainerFromScratch"] = 0
