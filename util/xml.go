@@ -77,7 +77,13 @@ func getCRITestBenchmarkTimes(ts *Testsuite) (data map[string]map[string]float64
 	data["Container"] = make(map[string]float64)
 	data["Image"] = make(map[string]float64)
 	data["PodSandbox"] = make(map[string]float64)
-
+	data["Container"]["BasicOperationsOnContainer"] = 0
+	data["Container"]["ListingContainer"] = 0
+	data["Container"]["StartContainerFromScratch"] = 0
+	data["Image"]["BasicOperationsOnImage"] = 0
+	data["Image"]["ListingImage"] = 0
+	data["PodSandbox"]["ListingPodSandbox"] = 0
+	data["PodSandbox"]["LifecycleOfPodSandbox"] = 0
 	for _, tc := range ts.Testcases {
 		if strings.Contains(tc.Name, "basic operations on Container ") {
 			data["Container"]["BasicOperationsOnContainer"] = tc.Time
